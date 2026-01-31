@@ -4,6 +4,19 @@
 
 ---
 
+## [v2.5.13] - 2026-01-31
+
+### 修复
+
+- **Gemini functionDeclaration parameters 类型修复** - 修复 Gemini API 返回 400 错误的问题
+  - 问题：当 Claude 工具的 `InputSchema` 为 nil、缺少 `type` 字段或缺少 `properties` 字段时，Gemini API 拒绝请求
+  - 新增 `normalizeGeminiParameters()` 辅助函数，确保 parameters schema 符合 Gemini 要求：
+    - `parameters` 必须有 `type: "object"` 字段
+    - `parameters` 必须有 `properties` 字段（即使为空对象）
+  - 涉及文件：`backend-go/internal/providers/gemini.go`
+
+---
+
 ## [v2.5.12] - 2026-01-30
 
 ### 新增
